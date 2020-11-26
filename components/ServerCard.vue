@@ -45,6 +45,7 @@ export default Vue.extend({
     ...mapActions('snackbar', ['pushSnackbarMessage']),
     ...mapActions('servers', ['setServer', 'removeServer']),
     async setServer() {
+      // TODO: Merge with the identical method in AddServerForm
       this.loading = true;
       this.$axios.setBaseURL(this.serverInfo.address);
       try {
@@ -56,6 +57,7 @@ export default Vue.extend({
             this.$router.push('/login');
           }
         } else {
+          this.$axios.setBaseURL('');
           this.pushSnackbarMessage({
             message: this.$t('serverVersionTooLow'),
             color: 'error'

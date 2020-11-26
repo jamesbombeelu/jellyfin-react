@@ -58,6 +58,7 @@ export default Vue.extend({
     ...mapActions('servers', ['addServer', 'clearServer']),
     ...mapActions('snackbar', ['pushSnackbarMessage']),
     async connectServer() {
+      // TODO: Merge with the identical method in ServerCard
       this.loading = true;
       this.$axios.setBaseURL(this.serverUrl);
       try {
@@ -75,6 +76,7 @@ export default Vue.extend({
             this.$router.push('/login');
           }
         } else {
+          this.$axios.setBaseURL('');
           this.pushSnackbarMessage({
             message: this.$t('serverVersionTooLow'),
             color: 'error'

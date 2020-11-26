@@ -121,15 +121,13 @@ export default Vue.extend({
    */
   async beforeMount() {
     try {
-      const RelatedItems = (
+      this.relatedItems = (
         await this.$api.library.getSimilarItems({
           itemId: this.id,
           userId: this.$auth.user.Id,
           limit: this.vertical ? 5 : 12
         })
       ).data.Items as BaseItemDto[];
-
-      this.relatedItems = RelatedItems;
     } catch (error) {
       console.error('Unable to get related items:', error);
     }
