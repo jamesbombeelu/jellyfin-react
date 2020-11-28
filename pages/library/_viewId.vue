@@ -124,8 +124,7 @@ export default Vue.extend({
       this.collectionInfo = collectionInfo;
 
       if (
-        this.collectionInfo.Items &&
-        ['CollectionFolder', 'Folder'].includes(collectionInfo.Items[0].Type)
+        ['CollectionFolder', 'Folder'].includes(collectionInfo?.Items?.[0].Type)
       ) {
         if (collectionInfo.Items[0].Name) {
           this.setPageTitle({
@@ -144,7 +143,7 @@ export default Vue.extend({
           fields: 'SortName'
         };
 
-        switch (this.collectionInfo.Items[0].CollectionType) {
+        switch (collectionInfo.Items[0].CollectionType) {
           case 'tvshows':
             options.includeItemTypes = 'Series';
             break;
@@ -182,10 +181,11 @@ export default Vue.extend({
     ...mapActions('page', ['setPageTitle']),
     async filterMedia(options: ItemsApiGetItemsRequest) {
       try {
-        const sortObject: any = {};
-        sortObject.sortBy = this.orderMethod;
-        sortObject.sortOrder = this.sortDirection;
-        sortObject.fields = this.orderMethod;
+        const sortObject = {
+          sortBy: this.orderMethod,
+          sortOrder: this.sortDirection,
+          fields: this.orderMethod
+        };
 
         Object.assign(options, sortObject);
 
