@@ -9,7 +9,7 @@ export interface UserState {
 
 export const state = (): UserState => ({
   id: '',
-  serverUrl: '',
+  serverUrl: 'http://127.0.0.1:8096',
   accessToken: '',
   displayPreferences: {}
 });
@@ -47,6 +47,8 @@ export const actions: ActionTree<UserState, UserState> = {
       accessToken
     }: { id: string; serverUrl: string; accessToken: string }
   ) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore -- $api exists on here, the issue seems random. Not sure how to fix
     const response = await this.$api.displayPreferences.getDisplayPreferences({
       displayPreferencesId: 'usersettings',
       userId: id,
