@@ -34,7 +34,7 @@
 </a>
 </p>
 
-This is an experimental web client for Jellyfin based on Vue.js. We welcome all contributions and pull requests! If you have a larger feature in mind please open an issue so we can discuss the implementation before you start.
+This is an experimental web client for Jellyfin based on React. This is just a fun little project for me to practice some of my React skills
 
 ## Requirements
 
